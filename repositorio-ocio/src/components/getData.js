@@ -2,7 +2,11 @@
 const API_KEY = '73759db8'; 
 const BASE_URL = 'https://www.omdbapi.com/';
 
-// 1. FUNCIÓN AUXILIAR: Obtiene el detalle (rating y plot) de UNA película por ID
+const RAWG_KEY = '810d5920363342b8ab0ea945c92fae8e';
+const RAWG_URL = 'https://api.rawg.io/api/games';
+
+
+// 1. FUNCIÓN AUXILIAR: Obtener detalles de una película por su ID
 const getMovieDetails = async (imdbID) => {
     try {
         // Hacemos fetch usando el ID ('i')
@@ -76,7 +80,7 @@ const searchRawg = async (searchTerm) => {
     }
 };
 
-export const searchGamesAndMovies = async (searchTerm, type) => {
+export const searchUniversal = async (searchTerm, type) => {
     if (!searchTerm || searchTerm.length < 2) return [];
 
     // SI EL TIPO ES 'game', USAMOS RAWG
