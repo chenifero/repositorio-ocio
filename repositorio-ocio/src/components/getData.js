@@ -20,7 +20,7 @@ const getMovieDetails = async (imdbID) => {
 };
 
 // 2. FUNCIÓN PRINCIPAL: Busca y combina datos
-export const searchMoviesWithRatings = async (searchTerm, type = 'movie') => {
+export const searchOmdb = async (searchTerm, type = 'movie') => {
   if (!searchTerm || searchTerm.length < 2) {
       return [];
   }
