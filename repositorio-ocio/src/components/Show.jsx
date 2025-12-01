@@ -82,69 +82,58 @@ function Show({ user }) {
   ////////////////////////////////FIREBASE////////////////////////////////
 
   return (
-        <div className="show-container">
-            {/* CABECERA: Info del usuario y Logout */}
-            <header className="show-header">
-                <div className="user-info">
-                    <img 
-                        src={user.photoURL} 
-                        alt="Avatar" 
-                        className="user-avatar" 
-                    />
-                    <span className="user-name">Hola, {user.displayName}</span>
-                </div>
-                <button className="logout-btn" onClick={handleLogout}>
-                    Cerrar Sesión
-                </button>
-            </header>
-
-            <h1 className="main-title">Mi Repositorio</h1>
-
-            {/* CONTENIDO: Grid o Mensaje de vacío */}
-            {myCollection.length === 0 ? (
-                <div className="empty-state">
-                    <h2>Tu repositorio está vacío</h2>
-                    <p>Pulsa el botón + para empezar tu colección.</p>
-                </div>
-            ) : (
-                <div className="grid-container">
-                    {myCollection.map((item) => (
-                        <div key={item.id} className="card-wrapper">
-                            <Card
-                                title={item.Title}
-                                year={item.Year}
-                                posterPath={item.Poster}
-                                rating={item.rating}
-                                overview={item.overview}
-                            />
-                            <button 
-                                className="delete-btn" 
-                                onClick={() => handleDelete(item.id)}
-                            >
-                                🗑️
-                            </button>
-                        </div>
-                    ))}
-                </div>
-            )}
-
-            {/* BOTÓN FLOTANTE (+) */}
-            <button 
-                className="floating-add-btn" 
-                onClick={() => setShowModal(true)}
-            >
-                +
-            </button>
-
-            {/* MODAL DE BÚSQUEDA */}
-            {showModal && (
-                <SearchModal 
-                    onClose={() => setShowModal(false)} 
-                    onAdd={handleAddToCollection} 
-                />
-            )}
+    <div className="show-container">
+      {/* --- CABECERA EXACTA AL DISEÑO --- */}
+      <header className="app-header">
+        {/* Bloque Izquierdo: Título + Subtítulo */}
+        <div className="brand-block">
+          <h1 className="header-logo">S T A S H .</h1>
+          <span className="header-subtitle">LO VES. LO AÑADES.</span>
         </div>
-    );
+
+        {/* Bloque Derecho: Botón */}
+        <button className="logout-btn-header" onClick={handleLogout}>
+          CERRAR SESIÓN.
+        </button>
+      </header>
+
+      {/* --- CONTENIDO --- */}
+      <main className="main-content">
+        {myCollection.length === 0 ? (
+          <div className="empty-state">
+            <h2>Tu repositorio está vacío</h2>
+            <p>Pulsa el botón + para empezar.</p>
+          </div>
+        ) : (
+          <div className="grid-container">
+            {myCollection.map((item) => (
+              <div key={item.id} className="card-wrapper">
+                {/* Pasamos la función handleDelete DIRECTAMENTE al componente Card */}
+                <Card
+                  title={item.Title}
+                  year={item.Year}
+                  posterPath={item.Poster}
+                  rating={item.rating}
+                  overview={item.overview}
+                  onDelete={() => handleDelete(item.id)}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </main>
+
+      <button className="floating-add-btn" onClick={() => setShowModal(true)}>
+        +
+      </button>
+      {showModal && (
+        <SearchModal
+          onClose={() => setShowModal(false)}
+          onAdd={handleAddToCollection}
+        />
+      )}
+    </div>
+  );
 }
 
 export default Show;

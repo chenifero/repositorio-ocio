@@ -32,9 +32,12 @@
   font-style: normal;
 }
 
-/* 2. Variables Globales (Aquí mezclamos lo nuevo con lo que ya tenías) */
+
 :root {
-  /* --- TUS VARIABLES DE FUENTE NUEVAS --- */
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  display: block;
   --font-stack: "StackSansHeadline", system-ui, Avenir, Helvetica, Arial,
     sans-serif;
 
@@ -64,21 +67,10 @@
 body {
   background-color: black;
   margin: 0;
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
   min-width: 320px;
   min-height: 100vh; /* Ocupa toda la altura de la pantalla */
 }
 
-#root {
-  width: 100%;
-  max-width: 1280px;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 h1 {
   font-weight: var(--w-bold); /* Usamos Bold para títulos */
@@ -114,11 +106,13 @@ button {
 }
 
 .login-container {
-  display: flex; /* Usamos Flexbox */
-  flex-direction: column; /* Para poner uno debajo de otro */
-  align-items: center; /* ALINEA TODO AL CENTRO (La clave) */
+  /* Añadimos altura mínima para que ocupe toda la pantalla */
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 0.5rem; /* Espacio uniforme entre título, texto y botón */
+  gap: 0.5rem;
 }
 
 /* Opcional: Resetea los márgenes para que el 'gap' controle el espacio perfectamente */
@@ -131,4 +125,301 @@ button {
 .login-subtitle {
   margin: 0;
   opacity: 0.8;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    /* CAMBIO AQUÍ: */
+    /* 2rem arriba/abajo */
+    /* 5% a los lados (izquierda/derecha) para despegarlo del borde */
+    padding: 2rem 5%; 
+    
+    background-color: transparent;
+    
+    /* La línea rosa */
+    border-bottom: 1px solid var(--color-brand);
+    
+    margin-bottom: 3rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Contenedor del Logo + Subtexto */
+.brand-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alineado a la izquierda */
+    gap: 5px; /* Espacio pequeño entre STASH y el subtítulo */
+}
+
+/* El Título Gigante */
+.header-logo {
+    font-family: var(--font-stack);
+    font-weight: var(--w-bold);
+    font-size: 4rem; /* Tamaño grande */
+    line-height: 0.8; /* Para que no ocupe mucha altura extra */
+    margin: 0;
+    color: var(--color-brand); /* Rosa */
+    letter-spacing: 5px; /* Separación entre letras S T A S H */
+}
+
+/* El Subtítulo Pequeño */
+.header-subtitle {
+    font-family: var(--font-stack);
+    font-weight: var(--w-light); /* Fuente fina */
+    font-size: 0.65rem; /* Muy pequeño */
+    color: var(--color-brand); /* Rosa */
+    letter-spacing: 3px; /* Muy separado */
+    text-transform: uppercase;
+    margin-left: 5px; /* Un pequeño ajuste visual para alinear con la S */
+}
+
+/* Botón Cerrar Sesión (Estilo Pastilla Rosa) */
+.logout-btn-header {
+    /* Reset de estilos del botón genérico */
+    margin: 0; 
+    
+    background-color: var(--color-brand); /* Fondo Rosa */
+    color: black; /* Texto Negro */
+    border: none;
+    
+    padding: 12px 24px; /* Relleno para darle forma */
+    border-radius: 50px; /* Bordes totalmente redondos (Pill shape) */
+    
+    font-family: var(--font-stack);
+    font-weight: var(--w-light);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s;
+}
+
+.logout-btn-header:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+/* Ajuste del contenido para que no se pegue a la línea rosa */
+.main-content {
+    padding: 0 5%;
+}
+
+.show.container {
+  background-color: #000000;
+}
+
+.grid-container {
+  display: grid;
+  /* El truco: minmax(160px, 1fr). 
+     Esto hace que las tarjetas sean pequeñas (aprox 160px de ancho) 
+     y caben muchas en una fila. */
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 30px 20px; /* 30px vertical, 20px horizontal */
+  padding-bottom: 50px;
+}
+
+/* LA TARJETA (CARD) */
+.card {
+    position: relative; /* Necesario para que las líneas se peguen a la tarjeta */
+    overflow: hidden;   /* Opcional: si quieres que las esquinas sean muy rectas */
+    padding: 10px;      /* Un poco de aire para que la línea no toque la foto */
+    
+}
+
+/* Efecto hover suave al pasar el ratón */
+
+
+/* LA IMAGEN (PÓSTER) */
+.card img {
+  width: 100%;
+  aspect-ratio: 2/3; /* Fuerza formato vertical de cine siempre */
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Sombra elegante */
+  margin-bottom: 10px;
+}
+
+/* CONTENIDO DE TEXTO DENTRO DE LA TARJETA */
+.card-content {
+  padding: 0; /* Quitamos relleno extra */
+}
+
+/* TÍTULO DE LA PELI/JUEGO */
+.card h2 {
+  font-family: var(--font-stack);
+  font-weight: var(--w-bold);
+  font-size: 0.9rem; /* Texto pequeño y elegante */
+  line-height: 1.2;
+  margin: 0;
+  color: white;
+  
+  /* Esto corta el texto si es muy largo y pone "..." */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* AÑO Y RATING (Los hacemos pequeñitos y grises) */
+.card p strong {
+    color: var(--color-brand);
+}
+
+.card p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
+    margin: 4px 0 0 0;
+}
+
+/* ¡TRUCO! OCULTAR LA DESCRIPCIÓN LARGA EN EL GRID */
+/* Esto hace que el grid se vea limpio, solo carátula y título */
+.card p:last-child {
+    display: none; 
+}
+
+/* BOTÓN DE BORRAR (Lo hacemos flotante sobre la imagen) */
+.delete-btn {
+    position: absolute;
+    top: 5px; /* Arriba */
+    right: 5px; /* Derecha */
+    background: rgba(0, 0, 0, 0.6);
+    color: #ff4d4d; /* Rojo suave */
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    opacity: 0; /* Invisible por defecto */
+    transition: opacity 0.2s;
+}
+
+/* Que aparezca el botón de borrar solo al pasar el ratón */
+.card-wrapper:hover .delete-btn {
+    opacity: 1;
+}
+
+.floating-add-btn {
+    width: 60px !important;  /* !important para ganar a la regla general */
+    height: 60px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    margin: 0 !important;    /* Quitamos el margin-top del botón general */
+    
+    /* Posición fija */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    
+    /* Estilos propios */
+    background-color: var(--color-brand);
+    color: white;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.trash-icon {
+    color: rgba(255, 255, 255, 0.4); /* Gris suave por defecto para no molestar */
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0; /* Evita que el icono se aplaste si el título es largo */
+    margin-top: 2px; /* Pequeño ajuste visual para alinear con el texto */
+}
+
+/* Al pasar el ratón se pone de tu color rosa */
+.trash-icon:hover {
+    color: var(--color-brand);
+    transform: scale(1.1); /* Se hace un pelín más grande */
+}
+
+/* Ajuste para que el título no se monte encima del icono */
+.card h2 {
+    /* Mantenemos tus estilos anteriores */
+    font-family: var(--font-stack);
+    font-weight: var(--w-bold);
+    color: white;
+    /* Quitamos el white-space: nowrap si quieres que el título baje de línea, 
+       o lo dejamos si prefieres puntos suspensivos */
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
+}
+
+.draw-line {
+    position: absolute;
+    background-color: var(--color-brand); /* Tu rosa */
+    transition: all 0.1s ease; /* Velocidad de dibujo */
+}
+
+/* --- 1. LÍNEA SUPERIOR (De izquierda a derecha) --- */
+.draw-top {
+    height: 2px;
+    width: 0; /* Empieza invisible */
+    top: 0;
+    left: 0;
+}
+
+/* --- 2. LÍNEA DERECHA (De arriba a abajo) --- */
+.draw-right {
+    width: 2px;
+    height: 0;
+    top: 0;
+    right: 0;
+}
+
+/* --- 3. LÍNEA INFERIOR (De derecha a izquierda) --- */
+.draw-bottom {
+    height: 2px;
+    width: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* --- 4. LÍNEA IZQUIERDA (De abajo a arriba) --- */
+.draw-left {
+    width: 2px;
+    height: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/* --- ACTIVACIÓN AL PASAR EL RATÓN (HOVER) --- */
+
+/* Top: Se dibuja inmediatamente */
+.card:hover .draw-top {
+    width: 100%;
+    transition-delay: 0s;
+}
+
+/* Right: Espera 0.2s (lo que tarda top) */
+.card:hover .draw-right {
+    height: 100%;
+    transition-delay: 0.1s;
+}
+
+/* Bottom: Espera 0.4s */
+.card:hover .draw-bottom {
+    width: 100%;
+    transition-delay: 0.2s;
+}
+
+/* Left: Espera 0.6s */
+.card:hover .draw-left {
+    height: 100%;
+    transition-delay: 0.3s;
+}
+
+/* --- DESACTIVACIÓN (Al quitar el ratón) --- */
+/* Esto hace que desaparezca suavemente sin delays */
+.card .draw-line {
+    transition-delay: 0s;
 }

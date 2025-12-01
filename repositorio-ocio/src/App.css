@@ -1,9 +1,9 @@
-
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  max-width: 100%; /* Permite que ocupe toda la pantalla */
+  margin: 0;       /* Elimina márgenes automáticos */
+  padding: 0;      /* Elimina el espacio que empujaba todo hacia adentro */
+  text-align: left;
 }
 
 
