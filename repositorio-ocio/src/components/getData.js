@@ -43,7 +43,8 @@ export const searchOmdb = async (searchTerm, type = 'movie') => {
         return {
             ...movie, 
             rating: details ? details.imdbRating : "N/A", 
-            overview: details ? details.Plot : "Sin descripción disponible." // 
+            overview: details ? details.Plot : "Sin descripción disponible.",
+            type: type
         };
     });
 
@@ -71,7 +72,8 @@ const searchRawg = async (searchTerm) => {
             Year: game.released ? game.released.substring(0, 4) : 'N/A', 
             Poster: game.background_image, 
             rating: game.metacritic || game.rating,
-            overview: game.genres ? `Géneros: ${game.genres.map(g => g.name).join(', ')}` : "Sin info extra"
+            overview: game.genres ? `Géneros: ${game.genres.map(g => g.name).join(', ')}` : "Sin info extra",
+            type: 'game'
         }));
 
     } catch (error) {

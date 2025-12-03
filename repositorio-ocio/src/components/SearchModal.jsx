@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
-import { searchUniversal } from "./getData"; 
+import { searchUniversal } from "./getData";
+import { FaSearch } from "react-icons/fa";
 
 function SearchModal({ onClose, onAdd }) {
     const [searchTerm, setSearchTerm] = useState("");
@@ -28,7 +29,8 @@ function SearchModal({ onClose, onAdd }) {
                 
                 {/*título y botón cerrar */}
                 <div className="modal-header">
-                    <h2>🔍 Buscar nuevo contenido</h2>
+                    <FaSearch className="header-icon-magnify" />
+                    <h2>Buscar nuevo contenido</h2>
                     <button className="close-btn" onClick={onClose}>
                         ✖
                     </button>
