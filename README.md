@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎬 Repositorio de Ocio
+# 🎬 Stash Repository
 
 **Aplicación web para registrar y gestionar tu catálogo personal de entretenimiento.**
 
